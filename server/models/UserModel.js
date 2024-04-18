@@ -1,5 +1,6 @@
 import {DataTypes} from "sequelize";
 import {sequelize} from "../config/db.js";
+import bcrypt from "bcryptjs";
 
 const UserModel = sequelize.define("users", {
   user_id: {
@@ -49,6 +50,12 @@ const UserModel = sequelize.define("users", {
     type: DataTypes.STRING(100),
     defaultValue: null,
   },
+});
+
+UserModel.beforeCreate(async (user) => {
+  const salt = await bcrypt.genSalt(15);
+  const hashPassword = await bcrypt.hash(user.password, salt);
+  user.password = hashPassword;
 });
 
 // UserModel.sync(); // Reset User Table:
