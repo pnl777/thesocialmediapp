@@ -14,4 +14,4 @@ const dbConnect = async () => {
   }
 };
 
-export default dbConnect;
+export {sequelize, dbConnect};

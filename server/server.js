@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import dbConnect from "./config/db.js";
+import {dbConnect} from "./config/db.js";
 
 // Configurations
 dotenv.config();
